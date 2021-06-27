@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.NoticeUnionDao">
+    <select id="queryAllNotice" resultType="pojo.NoticeUnion">
+        SELECT notice.* FROM notice
+    </select>
+    <select id="queryAllNoticeByNoticeId" resultType="pojo.NoticeUnion">
+        SELECT notice.*,notice_select.major_id,major.major_name FROM notice
+        LEFT JOIN notice_select
+          on notice.notice_id=notice_select.notice_id
+        LEFT JOIN major
+          on notice_select.major_id=major.major_id
+        where notice.notice_id=#{id}
+    </select>
+    <insert id="addNotice" >
+        insert into notice(notice_content,time)
+        values(#{notice_content},#{time})
+    </insert>
+    <select id="selNoticeId" resultType="int">
+        SELECT * FROM notice ORDER BY notice_id DESC limit 0,1;
+    </select>
+    <insert id="insertNoticeSelect" >
+        insert into notice_select(notice_id,major_id)
+        values(#{notice_id},#{major_id})
+    </insert>
+    <delete id="deleteNoticeById">
+        delete from notice where notice_id=#{id};
+    </delete>
+    <delete id="deleteNoticeSelectById">
+        delete from notice_select where notice_id=#{id}
+    </delete>
+    <select id="queryAllNoticeByMajorId" resultType="pojo.NoticeUnion">
+        SELECT notice.* FROM notice
+        LEFT JOIN notice_select
+          on notice.notice_id=notice_select.notice_id
+        where notice_select.major_id=#{major_id}
+    </select>
+</mapper>

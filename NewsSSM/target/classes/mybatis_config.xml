@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <typeAliases>
+        <package name="pojo" />
+    </typeAliases>
+
+    <mappers>
+        <mapper resource="BookDao.xml"></mapper>
+<mapper resource="StudentDao.xml"></mapper>
+<mapper resource="CourseUnionDao.xml"></mapper>
+<mapper resource="StudentUnionDao.xml"></mapper>
+<mapper resource="TeacherUnionDao.xml"></mapper>
+<mapper resource="CourseDao.xml"></mapper>
+<mapper resource="MajorDao.xml"></mapper>
+<mapper resource="NoticeUnionDao.xml"></mapper>
+<mapper resource="DeptDao.xml"></mapper>
+        </mappers>
+
+        </configuration>

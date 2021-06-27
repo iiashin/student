@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.CourseDao">
+    <select id="qurryCourseMsgById" resultType="pojo.Course">
+        select * from course where teac_id=#{id};
+    </select>
+    <select id="querryAllCourse" resultType="pojo.Course">
+        select * from course;
+    </select>
+    <insert id="addCourse">
+       insert into course(course_name,classtime,term,day,teac_id,room,credit)
+        values(#{course_name},#{classtime},#{term},#{day},#{teac_id},#{room},#{credit})
+    </insert>
+    <delete id="delCourse">
+        delete from course where  course_id=#{course_id};
+    </delete>
+    <delete id="delCourseSel">
+        delete from course_select where  course_id=#{course_id};
+    </delete>
+</mapper>

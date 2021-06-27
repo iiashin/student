@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.StudentUnionDao">
+    <select id="qurryStudentMsgByStuId" resultType="pojo.StudentUnion">
+      SELECT student.*,major.major_name,dept.dept_name FROM student
+      LEFT JOIN major
+        on student.stu_major=major.major_id
+      LEFT JOIN dept
+        on student.stu_dept=dept.dept_id
+      WHERE stu_id=#{stu_id}
+    </select>
+
+    <select id="qurryStudentByCourseId" resultType="pojo.StudentUnion2">
+      SELECT student.stu_id,student.stu_name,major.major_name,dept.dept_name,course_select.score,course_select.course_id,course.course_name FROM student
+      LEFT JOIN major
+        on student.stu_major=major.major_id
+      LEFT JOIN dept
+        on student.stu_dept=dept.dept_id
+      LEFT JOIN course_select
+        on student.stu_id=course_select.stu_id
+      LEFT JOIN course
+        on course.course_id=course_select.course_id
+      WHERE course_select.course_id=#{course_id}
+    </select>
+
+    <select id="qurryStudentMsg" resultType="pojo.StudentUnion">
+      SELECT student.*,major.major_name,dept.dept_name FROM student
+      LEFT JOIN major
+        on student.stu_major=major.major_id
+      LEFT JOIN dept
+        on student.stu_dept=dept.dept_id
+    </select>
+
+    <select id="searchStudentMsg" resultType="pojo.StudentUnion">
+      SELECT student.*,major.major_name,dept.dept_name FROM student
+      LEFT JOIN major
+        on student.stu_major=major.major_id
+      LEFT JOIN dept
+        on student.stu_dept=dept.dept_id
+      where student.stu_major LIKE #{major_id} and student.stu_id LIKE #{stu_id};
+    </select>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TeacherUnionDao">
+    <select id="teacLogin" resultType="pojo.TeacherUnion">
+      SELECT teacher.*,dept.dept_name FROM teacher
+      LEFT JOIN dept
+        on teacher.dept_id=dept.dept_id
+      where teac_id=#{id} and password=#{password};
+    </select>
+
+    <select id="selTeacMsgById" resultType="pojo.TeacherUnion">
+      SELECT teacher.*,dept.dept_name FROM teacher
+      LEFT JOIN dept
+        on teacher.dept_id=dept.dept_id
+      where teac_id=#{id};
+    </select>
+
+    <select id="queryTeacMsg" resultType="pojo.TeacherUnion">
+      SELECT teacher.*,dept.dept_name FROM teacher
+      LEFT JOIN dept
+        on teacher.dept_id=dept.dept_id
+    </select>
+
+    <insert id="insertTeacher" >
+        insert into teacher(teac_name,password,dept_id)
+        values(#{teac_name},#{password},#{dept_id})
+    </insert>
+
+    <delete id="delTeacher">
+        delete from teacher where teac_id=#{teac_id}
+    </delete>
+</mapper>

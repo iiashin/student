@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.StudentDao">
+    <insert id="insertStudent" >
+        insert into student(stu_name,password,stu_dept,stu_major,sex)
+        values(#{stu_name},#{password},#{stu_dept},#{stu_major},#{sex})
+    </insert>
+
+    <delete id="delStudent">
+        delete from student where stu_id=#{stu_id}
+    </delete>
+
+    <update id="updateStudent">
+        update student set phone=#{phone},guarder=#{guarder},guarder_phone=#{guarder_phone}
+        where stu_id=#{stu_id}
+    </update>
+
+    <update id="updateScore">
+        update course_select set score=#{score}
+        where stu_id=#{stu_id} and course_id=#{course_id}
+    </update>
+    <!--<select id="queryStudentById" resultType="pojo.Student">-->
+        <!--select * from student where id=#{id}-->
+    <!--</select>-->
+
+    <select id="queryAllStudent" resultType="pojo.Student">
+     select * from student
+    </select>
+
+    <select id="studentLogin" resultType="pojo.Student">
+        select * from student where stu_id=#{id} and password=#{password};
+    </select>
+
+</mapper>
